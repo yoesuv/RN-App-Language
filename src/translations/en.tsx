@@ -1,4 +1,4 @@
-{
+export const en = {
     "welcome": "Welcome",
     "app_name": "RN App Language"
 }

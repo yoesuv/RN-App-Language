@@ -4,6 +4,7 @@ import Modal from "react-native-modal";
 
 import AppButton from "../components/button";
 import SizedBox from "../components/sized-box";
+import { THEME_COLOR } from '../data/colors';
 
 export default function HomeScreen() {
 
@@ -37,6 +38,7 @@ export default function HomeScreen() {
             isVisible={isModalVisible}
             animationIn='fadeIn'
             animationOut='fadeOut'
+            useNativeDriver={true}
             onBackdropPress={closeChangeLanguage}
             onBackButtonPress={closeChangeLanguage}>
             <View style={styles.containerModal}>
@@ -45,10 +47,14 @@ export default function HomeScreen() {
                 <View style={styles.hairLine} />
                 <SizedBox height={2} />
                 <Pressable onPress={closeChangeLanguage}>
-                    <Text style={styles.labelModal}>English</Text>
+                    {({ pressed }) => (
+                        <Text style={pressed ? styles.labelModalPressed : styles.labelModal}>English</Text>
+                    )}
                 </Pressable>
                 <Pressable onPress={closeChangeLanguage}>
-                    <Text style={styles.labelModal}>Indonesia</Text>
+                    {({ pressed }) => (
+                        <Text style={pressed ? styles.labelModalPressed : styles.labelModal}>Indonesia</Text>
+                    )}
                 </Pressable>
             </View>
         </Modal>
@@ -93,5 +99,10 @@ const styles = StyleSheet.create({
     labelModal: {
         fontSize: 16,
         paddingVertical: 8,
+    },
+    labelModalPressed: {
+        fontSize: 16,
+        paddingVertical: 8,
+        color: THEME_COLOR,
     }
 })

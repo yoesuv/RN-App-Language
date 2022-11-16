@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import { THEME_COLOR } from "../data/colors";
 import { RootStackParamList } from "./root-stack-params";
+import { i18n } from '../../src/translations/translations';
 
 type splashScreenProp = StackNavigationProp<RootStackParamList, 'Splash'>;
 
@@ -20,7 +21,7 @@ export default function SplashScreen() {
     }, 2000)
 
     return <View style={styles.container}>
-        <Text style={styles.textSplash}>Welcome</Text>
+        <Text style={styles.textSplash}>{ i18n.t('welcome') }</Text>
     </View>
 }
 

@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, SafeAreaView, View, Text, Pressable } from "react-native";
 import Modal from "react-native-modal";
-import * as RNLocalize from 'react-native-localize';
-import i18n from 'i18n-js';
-import memoize from 'lodash.memoize';
 
 import AppButton from "../components/button";
 import SizedBox from "../components/sized-box";

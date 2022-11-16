@@ -1,11 +1,25 @@
-import { StyleSheet, SafeAreaView, View, Text } from "react-native";
+import React, { useState } from 'react';
+import { StyleSheet, SafeAreaView, View, Text, Pressable } from "react-native";
+import Modal from "react-native-modal";
+
 import AppButton from "../components/button";
 import SizedBox from "../components/sized-box";
 
 export default function HomeScreen() {
+
+    const [isModalVisible, setIsModalVisible] = useState(false);
+
+    const changeLanguage = () => {
+        setIsModalVisible(true)
+    }
+
+    const closeChangeLanguage = () => {
+        setIsModalVisible(false)
+    }
+
     return <SafeAreaView style={styles.container}>
         <View style={styles.content}>
-            <Text style={styles.label}>This App is available in english and indonesia language, change language settings below.</Text>
+            <Text style={styles.label}>This app is available in english and indonesia language, change language settings below.</Text>
             <SizedBox height={16} />
             <Text style={styles.heading}>Settings</Text>
             <SizedBox height={4} />
@@ -14,10 +28,31 @@ export default function HomeScreen() {
             <View style={styles.layoutChange}>
                 <Text style={styles.label}>English</Text>
                 <View style={styles.button}>
-                    <AppButton title={"Change Language"} onPress={() => {}} />
+                    <AppButton title={"Change Language"} onPress={changeLanguage} />
                 </View>
             </View>
         </View>
+
+        <Modal
+            isVisible={isModalVisible}
+            animationIn='fadeIn'
+            animationOut='fadeOut'
+            onBackdropPress={closeChangeLanguage}
+            onBackButtonPress={closeChangeLanguage}>
+            <View style={styles.containerModal}>
+                <Text style={styles.heading}>Change Language</Text>
+                <SizedBox height={10} />
+                <View style={styles.hairLine} />
+                <SizedBox height={2} />
+                <Pressable onPress={closeChangeLanguage}>
+                    <Text style={styles.labelModal}>English</Text>
+                </Pressable>
+                <Pressable onPress={closeChangeLanguage}>
+                    <Text style={styles.labelModal}>Indonesia</Text>
+                </Pressable>
+            </View>
+        </Modal>
+
     </SafeAreaView>
 }
 
@@ -48,5 +83,15 @@ const styles = StyleSheet.create({
     },
     button: {
         height: 45,
+    },
+    containerModal: {
+        backgroundColor: 'white',
+        paddingHorizontal: 24,
+        paddingVertical: 24,
+        borderRadius: 8,
+    },
+    labelModal: {
+        fontSize: 16,
+        paddingVertical: 8,
     }
 })

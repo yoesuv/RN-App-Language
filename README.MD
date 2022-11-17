@@ -14,6 +14,9 @@ Build from [Expo Framework](https://expo.dev/). Download apk file [here]()
 - [i18n-js](https://www.npmjs.com/package/i18n-js)
 - [React Native Modal](https://github.com/react-native-modal/react-native-modal)
 - [React Navigation](https://reactnavigation.org/)
+- [Redux](https://redux.js.org/)
+- [React Redux](https://react-redux.js.org/)
+- [Redux Thunk](https://github.com/reduxjs/redux-thunk)
 
 #### References ####
 - [Youtube](https://www.youtube.com/watch?v=NqhXtRRm8kY)

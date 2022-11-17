@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
         alignSelf: 'stretch', 
     },
     button: {
-        height: 45,
+        height: 50,
     },
     containerModal: {
         backgroundColor: 'white',

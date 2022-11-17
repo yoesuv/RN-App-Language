@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { StyleSheet, SafeAreaView, View, Text, Pressable } from "react-native";
 import Modal from "react-native-modal";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import AppButton from "../components/button";
 import SizedBox from "../components/sized-box";
 import { THEME_COLOR } from '../data/colors';
 import { i18n } from '../../src/translations/translations';
+import { KEY_LANGUAGE } from '../data/constants';
 
 export default function HomeScreen() {
 
@@ -19,9 +21,17 @@ export default function HomeScreen() {
         setIsModalVisible(true)
     }
 
-    function selectLanguage(language: String) {
-        console.log(`Home Screen # selected language ${language}`);
+    async function selectLanguage(language: string) {
         setIsModalVisible(false)
+        try {
+            const current = await AsyncStorage.getItem(KEY_LANGUAGE);
+            console.log(`Home Screen # current ${current} selected language ${language}`);
+            if (current !== language) {
+                await AsyncStorage.setItem(KEY_LANGUAGE, language);
+            }
+        } catch (e) {
+            console.warn(e);
+        }
     }
 
     return <SafeAreaView style={styles.container}>

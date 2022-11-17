@@ -1,8 +1,9 @@
 import { ActionCreator } from "redux";
-import { mainActionType, MAIN_APP_INIT } from "../types";
+import { MainActionType, MAIN_APP_INIT } from "../types";
 
-export const mainAppInit: ActionCreator<mainActionType> = () => {
+export const mainAppInit: ActionCreator<MainActionType> = (language: string) => {
     return {
-        type: MAIN_APP_INIT
+        type: MAIN_APP_INIT,
+        language: language,
     }
 }

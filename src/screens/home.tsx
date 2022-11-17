@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { StyleSheet, SafeAreaView, View, Text, Pressable } from "react-native";
+import { StyleSheet, SafeAreaView, View, Text, Pressable, DevSettings } from "react-native";
 import Modal from "react-native-modal";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import RNRestart from 'react-native-restart';
 
 import AppButton from "../components/button";
 import SizedBox from "../components/sized-box";
@@ -28,6 +29,11 @@ export default function HomeScreen() {
             console.log(`Home Screen # current ${current} selected language ${language}`);
             if (current !== language) {
                 await AsyncStorage.setItem(KEY_LANGUAGE, language);
+                if (__DEV__) {
+                    DevSettings.reload();
+                } else {
+                    RNRestart.Restart();
+                }
             }
         } catch (e) {
             console.warn(e);

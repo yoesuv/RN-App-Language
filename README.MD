@@ -12,6 +12,7 @@ Build from [Expo Framework](https://expo.dev/). Download apk file [here](https:/
 - [Expo Async Storage](https://docs.expo.dev/versions/latest/sdk/async-storage/)
 - [Expo Localization](https://docs.expo.dev/versions/v47.0.0/sdk/localization/)
 - [i18n-js](https://www.npmjs.com/package/i18n-js)
+- [React Native Restart](https://www.npmjs.com/package/react-native-restart)
 - [React Navigation](https://reactnavigation.org/)
 - [Redux](https://redux.js.org/)
 - [React Redux](https://react-redux.js.org/)

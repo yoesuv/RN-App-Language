@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { StyleSheet, SafeAreaView, View, Text, Pressable, DevSettings } from "react-native";
-import Modal from "react-native-modal";
+import { StyleSheet, SafeAreaView, View, Text, Pressable, Modal, DevSettings } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import RNRestart from 'react-native-restart';
 
 import AppButton from "../components/button";
 import SizedBox from "../components/sized-box";
-import { THEME_COLOR } from '../data/colors';
+import { MODAL_BACKGROUND, THEME_COLOR } from '../data/colors';
 import { i18n } from '../../src/translations/translations';
 import { KEY_LANGUAGE } from '../data/constants';
 
@@ -57,31 +56,31 @@ export default function HomeScreen() {
         </View>
 
         <Modal
-            isVisible={isModalVisible}
-            animationIn='fadeIn'
-            animationOut='fadeOut'
-            useNativeDriver={true}
-            onBackdropPress={closeChangeLanguage}
-            onBackButtonPress={closeChangeLanguage}>
-            <View style={styles.containerModal}>
-                <Text style={styles.heading}>{i18n.t('change_language')}</Text>
-                <SizedBox height={10} />
-                <View style={styles.hairLine} />
-                <SizedBox height={2} />
-                <Pressable onPress={() => {
-                    selectLanguage("en");
-                }}>
-                    {({ pressed }) => (
-                        <Text style={pressed ? styles.labelModalPressed : styles.labelModal}>English</Text>
-                    )}
-                </Pressable>
-                <Pressable onPress={() => {
-                    selectLanguage("id");
-                }}>
-                    {({ pressed }) => (
-                        <Text style={pressed ? styles.labelModalPressed : styles.labelModal}>Indonesia</Text>
-                    )}
-                </Pressable>
+            visible={isModalVisible}
+            onRequestClose={closeChangeLanguage}
+            animationType='fade'
+            transparent>
+            <View style={styles.centerModal}>
+                <View style={styles.containerModal}>
+                    <Text style={styles.heading}>{i18n.t('change_language')}</Text>
+                    <SizedBox height={10} />
+                    <View style={styles.hairLine} />
+                    <SizedBox height={2} />
+                    <Pressable onPress={() => {
+                        selectLanguage("en");
+                    }}>
+                        {({ pressed }) => (
+                            <Text style={pressed ? styles.labelModalPressed : styles.labelModal}>English</Text>
+                        )}
+                    </Pressable>
+                    <Pressable onPress={() => {
+                        selectLanguage("id");
+                    }}>
+                        {({ pressed }) => (
+                            <Text style={pressed ? styles.labelModalPressed : styles.labelModal}>Indonesia</Text>
+                        )}
+                    </Pressable>
+                </View>
             </View>
         </Modal>
 
@@ -116,7 +115,15 @@ const styles = StyleSheet.create({
     button: {
         height: 50,
     },
+    centerModal: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: MODAL_BACKGROUND,
+    },
     containerModal: {
+        width: 300,
+        height: 160,
         backgroundColor: 'white',
         paddingHorizontal: 24,
         paddingVertical: 24,

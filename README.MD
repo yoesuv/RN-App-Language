@@ -1,7 +1,7 @@
 ## App Language ###
 
 React Native app with multiple language localization.  
-Build from [Expo Framework](https://expo.dev/). Download apk file [here](https://www.dropbox.com/s/gjhwns48kaaqqxu)
+Build from [Expo Framework](https://expo.dev/). Download apk file [here](https://e.pcloud.link/publink/show?code=XZyEfsZw6DUecj27hzoXKcAidT1UzAlKPy7)
 
 #### Screenshot ####
 | English | Indonesia | Dialog |
@@ -10,7 +10,7 @@ Build from [Expo Framework](https://expo.dev/). Download apk file [here](https:/
 
 #### List Package ####
 - [Expo Async Storage](https://docs.expo.dev/versions/latest/sdk/async-storage/)
-- [Expo Localization](https://docs.expo.dev/versions/v47.0.0/sdk/localization/)
+- [Expo Localization](https://docs.expo.dev/versions/latest/sdk/localization/)
 - [i18n-js](https://www.npmjs.com/package/i18n-js)
 - [React Native Restart](https://www.npmjs.com/package/react-native-restart)
 - [React Navigation](https://reactnavigation.org/)

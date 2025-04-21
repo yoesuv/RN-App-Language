@@ -44,11 +44,11 @@ const AppNavigation = () => {
   );
 };
 
-const AppContainer = () => {
+const AppContainer = ({ currentLanguage }: { currentLanguage: string }) => {
   async function setupLanguage() {
     i18n.enableFallback = true;
     try {
-      const current = "en";
+      const current = currentLanguage;
       if (current !== null) {
         i18n.locale = current;
       } else {
@@ -62,7 +62,7 @@ const AppContainer = () => {
 
   useEffect(() => {
     setupLanguage();
-  }, []);
+  }, [currentLanguage]);
 
   return <AppNavigation />;
 };

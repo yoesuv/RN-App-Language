@@ -3,7 +3,7 @@ import {
   createNativeStackNavigator,
   NativeStackNavigationOptions,
 } from "@react-navigation/native-stack";
-import React, { useEffect } from "react";
+import React from "react";
 
 import { THEME_COLOR } from "./data/colors";
 import HomeScreen from "./screens/home";
@@ -14,7 +14,7 @@ import { i18n } from "./translations/translations";
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const baseOptions: NativeStackNavigationOptions = {
-  title: "RN Load More",
+  title: "RN App Language",
   headerStyle: {
     backgroundColor: THEME_COLOR,
   },
@@ -25,7 +25,7 @@ const baseOptions: NativeStackNavigationOptions = {
   statusBarColor: THEME_COLOR,
 };
 
-const AppNavigation = () => {
+export const AppNavigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -43,28 +43,3 @@ const AppNavigation = () => {
     </NavigationContainer>
   );
 };
-
-const AppContainer = ({ currentLanguage }: { currentLanguage: string }) => {
-  async function setupLanguage() {
-    i18n.enableFallback = true;
-    try {
-      const current = currentLanguage;
-      if (current !== null) {
-        i18n.locale = current;
-      } else {
-        i18n.locale = "en";
-      }
-    } catch (e) {
-      console.warn(e);
-      i18n.locale = "en";
-    }
-  }
-
-  useEffect(() => {
-    setupLanguage();
-  }, [currentLanguage]);
-
-  return <AppNavigation />;
-};
-
-export default AppContainer;

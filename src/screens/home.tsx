@@ -21,6 +21,7 @@ import { KEY_LANGUAGE } from "../data/constants";
 export default function HomeScreen() {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const contextLanguage = useContext(LanguageContext);
+  const { toggleLanguage } = contextLanguage;
 
   const closeChangeLanguage = () => {
     setIsModalVisible(false);
@@ -35,12 +36,12 @@ export default function HomeScreen() {
     try {
       const current = await AsyncStorage.getItem(KEY_LANGUAGE);
       if (current !== language) {
-        contextLanguage?.toggleLanguage();
         await AsyncStorage.setItem(KEY_LANGUAGE, language);
+        toggleLanguage(language);
         if (__DEV__) {
-          //DevSettings.reload();
+          DevSettings.reload();
         } else {
-          //RNRestart.Restart();
+          RNRestart.restart();
         }
       }
     } catch (e) {

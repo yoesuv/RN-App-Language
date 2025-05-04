@@ -18,10 +18,10 @@ export const LanguageProvider = ({ children }: LanguageProviderProps) => {
 
   const toggleLanguage = (language: string) => {
     setLanguage(language);
-    i18n.locale = language;
   };
 
   async function setupLanguage() {
+    i18n.enableFallback = true;
     const config = await AsyncStorage.getItem(KEY_LANGUAGE);
     try {
       const current = config;
@@ -41,7 +41,6 @@ export const LanguageProvider = ({ children }: LanguageProviderProps) => {
   };
 
   useEffect(() => {
-    i18n.enableFallback = true;
     setupLanguage();
   }, [language]);
 

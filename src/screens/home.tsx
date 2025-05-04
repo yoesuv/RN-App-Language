@@ -6,16 +6,14 @@ import {
   Text,
   Pressable,
   Modal,
-  DevSettings,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import RNRestart from "react-native-restart";
 
 import AppButton from "../components/button";
 import SizedBox from "../components/sized-box";
 import { MODAL_BACKGROUND, THEME_COLOR } from "../data/colors";
 import { KEY_LANGUAGE } from "../data/constants";
-import { useLanguage } from "../translations/LanguageContext";
+import { useLanguage } from "../translations/language-context";
 
 export default function HomeScreen() {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -36,11 +34,6 @@ export default function HomeScreen() {
       if (current !== language) {
         await AsyncStorage.setItem(KEY_LANGUAGE, language);
         toggleLanguage(language);
-        if (__DEV__) {
-          DevSettings.reload();
-        } else {
-          RNRestart.restart();
-        }
       }
     } catch (e) {
       console.warn(e);

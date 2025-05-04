@@ -9,7 +9,7 @@ import { THEME_COLOR } from "./data/colors";
 import HomeScreen from "./screens/home";
 import { RootStackParamList } from "./screens/root-stack-params";
 import SplashScreen from "./screens/splash";
-import { useLanguage } from "./translations/LanguageContext";
+import { useLanguage } from "./translations/language-context";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 

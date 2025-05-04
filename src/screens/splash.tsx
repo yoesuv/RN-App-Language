@@ -4,7 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 
 import { THEME_COLOR } from "../data/colors";
 import { RootStackParamList } from "./root-stack-params";
-import { useLanguage } from "../translations/LanguageContext";
+import { useLanguage } from "../translations/language-context";
 
 type splashScreenProp = StackNavigationProp<RootStackParamList, "Splash">;
 

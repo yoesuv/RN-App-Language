@@ -1,12 +1,16 @@
 import React, { createContext, useState, useEffect } from "react";
-import { i18n } from "../translations/translations";
 import { LanguageContextType, LanguageProviderProps } from "../data/AppType";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { I18n } from "i18n-js";
+import { translations } from "../translations/translations";
 import { KEY_LANGUAGE } from "../data/constants";
+
+const i18n = new I18n(translations);
 
 export const LanguageContext = createContext<LanguageContextType>({
   language: "en",
   toggleLanguage: () => {},
+  translate: (key: string) => key,
 });
 
 export const LanguageProvider = ({ children }: LanguageProviderProps) => {
@@ -32,6 +36,10 @@ export const LanguageProvider = ({ children }: LanguageProviderProps) => {
     }
   }
 
+  const translate = (key: string) => {
+    return i18n.t(key);
+  };
+
   useEffect(() => {
     setupLanguage();
   }, [language]);
@@ -41,9 +49,18 @@ export const LanguageProvider = ({ children }: LanguageProviderProps) => {
       value={{
         toggleLanguage,
         language,
+        translate,
       }}
     >
       {children}
     </LanguageContext.Provider>
   );
+};
+
+export const useLanguage = () => {
+  const context = React.useContext(LanguageContext);
+  if (context === undefined) {
+    throw new Error("useLanguage must be used within a LanguageProvider");
+  }
+  return context;
 };

@@ -9,7 +9,7 @@ import { THEME_COLOR } from "./data/colors";
 import HomeScreen from "./screens/home";
 import { RootStackParamList } from "./screens/root-stack-params";
 import SplashScreen from "./screens/splash";
-import { i18n } from "./translations/translations";
+import { useLanguage } from "./translations/LanguageContext";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -26,6 +26,7 @@ const baseOptions: NativeStackNavigationOptions = {
 };
 
 export const AppNavigation = () => {
+  const { translate } = useLanguage();
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -37,7 +38,7 @@ export const AppNavigation = () => {
         <Stack.Screen
           name="Home"
           component={HomeScreen}
-          options={{ ...baseOptions, title: i18n.t("app_name") }}
+          options={{ ...baseOptions, title: translate("app_name") }}
         />
       </Stack.Navigator>
     </NavigationContainer>

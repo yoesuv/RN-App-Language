@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   SafeAreaView,
@@ -10,18 +10,16 @@ import {
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import RNRestart from "react-native-restart";
-import { LanguageContext } from "../translations/LanguageContext";
 
 import AppButton from "../components/button";
 import SizedBox from "../components/sized-box";
 import { MODAL_BACKGROUND, THEME_COLOR } from "../data/colors";
-import { i18n } from "../../src/translations/translations";
 import { KEY_LANGUAGE } from "../data/constants";
+import { useLanguage } from "../translations/LanguageContext";
 
 export default function HomeScreen() {
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const contextLanguage = useContext(LanguageContext);
-  const { toggleLanguage } = contextLanguage;
+  const { translate, toggleLanguage } = useLanguage();
 
   const closeChangeLanguage = () => {
     setIsModalVisible(false);
@@ -52,17 +50,17 @@ export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.content}>
-        <Text style={styles.label}>{i18n.t("information")}</Text>
+        <Text style={styles.label}>{translate("information")}</Text>
         <SizedBox height={16} />
-        <Text style={styles.heading}>{i18n.t("settings")}</Text>
+        <Text style={styles.heading}>{translate("settings")}</Text>
         <SizedBox height={4} />
         <View style={styles.hairLine} />
         <SizedBox height={8} />
         <View style={styles.layoutChange}>
-          <Text style={styles.label}>{i18n.t("selected_language")}</Text>
+          <Text style={styles.label}>{translate("selected_language")}</Text>
           <View style={styles.button}>
             <AppButton
-              title={i18n.t("change_language")}
+              title={translate("change_language")}
               onPress={changeLanguage}
             />
           </View>
@@ -77,7 +75,7 @@ export default function HomeScreen() {
       >
         <View style={styles.centerModal}>
           <View style={styles.containerModal}>
-            <Text style={styles.heading}>{i18n.t("change_language")}</Text>
+            <Text style={styles.heading}>{translate("change_language")}</Text>
             <SizedBox height={10} />
             <View style={styles.hairLine} />
             <SizedBox height={2} />

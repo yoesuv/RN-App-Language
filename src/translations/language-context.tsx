@@ -17,6 +17,7 @@ export const LanguageProvider = ({ children }: LanguageProviderProps) => {
   const [language, setLanguage] = useState<string>("en");
 
   const toggleLanguage = (language: string) => {
+    i18n.locale = language;
     setLanguage(language);
   };
 
@@ -26,12 +27,15 @@ export const LanguageProvider = ({ children }: LanguageProviderProps) => {
     try {
       const current = config;
       if (current !== null) {
+        setLanguage(current);
         i18n.locale = current;
       } else {
+        setLanguage("en");
         i18n.locale = "en";
       }
     } catch (e) {
       console.warn(e);
+      setLanguage("en");
       i18n.locale = "en";
     }
   }

@@ -1,15 +1,12 @@
-import React from 'react';
-import { Provider } from 'react-redux';
+import React from "react";
 
-import store from './src/redux/store'
-import AppContainer from './src/navigation';
-
-const configureStore = store();
+import { AppNavigation } from "./src/navigation";
+import { LanguageProvider } from "./src/translations/language-context";
 
 export default function App() {
   return (
-    <Provider store={configureStore} >
-      <AppContainer />
-    </Provider>
+    <LanguageProvider>
+      <AppNavigation />
+    </LanguageProvider>
   );
 }

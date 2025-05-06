@@ -7,13 +7,13 @@ import {
   Pressable,
   Modal,
 } from "react-native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import AppButton from "../components/button";
 import SizedBox from "../components/sized-box";
 import { MODAL_BACKGROUND, THEME_COLOR } from "../data/colors";
-import { KEY_LANGUAGE } from "../data/constants";
+import { APP_LANGUAGE } from "../data/constants";
 import { useLanguage } from "../translations/language-context";
+import { getLanguage, saveLanguage } from "../translations/language-store";
 
 export default function HomeScreen() {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -27,12 +27,12 @@ export default function HomeScreen() {
     setIsModalVisible(true);
   };
 
-  async function selectLanguage(language: string) {
+  async function selectLanguage(language: APP_LANGUAGE) {
     setIsModalVisible(false);
     try {
-      const current = await AsyncStorage.getItem(KEY_LANGUAGE);
+      const current = await getLanguage();
       if (current !== language) {
-        await AsyncStorage.setItem(KEY_LANGUAGE, language);
+        await saveLanguage(language);
         toggleLanguage(language);
       }
     } catch (e) {
@@ -74,7 +74,7 @@ export default function HomeScreen() {
             <SizedBox height={2} />
             <Pressable
               onPress={() => {
-                selectLanguage("en");
+                selectLanguage(APP_LANGUAGE.ENGLISH);
               }}
             >
               {({ pressed }) => (
@@ -87,7 +87,7 @@ export default function HomeScreen() {
             </Pressable>
             <Pressable
               onPress={() => {
-                selectLanguage("id");
+                selectLanguage(APP_LANGUAGE.INDONESIAN);
               }}
             >
               {({ pressed }) => (

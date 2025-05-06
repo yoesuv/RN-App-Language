@@ -1,39 +1,38 @@
 import React, { createContext, useState, useEffect } from "react";
 import { LanguageContextType, LanguageProviderProps } from "../data/app-type";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { KEY_LANGUAGE } from "../data/constants";
+import { APP_LANGUAGE } from "../data/constants";
 import { i18n } from "./translations";
+import { getLanguage } from "./language-store";
 
 export const LanguageContext = createContext<LanguageContextType>({
-  language: "en",
+  language: APP_LANGUAGE.ENGLISH,
   toggleLanguage: () => {},
   translate: (key: string) => key,
 });
 
 export const LanguageProvider = ({ children }: LanguageProviderProps) => {
-  const [language, setLanguage] = useState<string>("en");
+  const [language, setLanguage] = useState<APP_LANGUAGE>(APP_LANGUAGE.ENGLISH);
 
-  const toggleLanguage = (language: string) => {
+  const toggleLanguage = (language: APP_LANGUAGE) => {
     i18n.locale = language;
     setLanguage(language);
   };
 
   async function setupLanguage() {
     i18n.enableFallback = true;
-    const config = await AsyncStorage.getItem(KEY_LANGUAGE);
     try {
-      const current = config;
+      const current = await getLanguage();
       if (current !== null) {
         setLanguage(current);
         i18n.locale = current;
       } else {
-        setLanguage("en");
-        i18n.locale = "en";
+        setLanguage(APP_LANGUAGE.ENGLISH);
+        i18n.locale = APP_LANGUAGE.ENGLISH;
       }
     } catch (e) {
       console.warn(e);
-      setLanguage("en");
-      i18n.locale = "en";
+      setLanguage(APP_LANGUAGE.ENGLISH);
+      i18n.locale = APP_LANGUAGE.ENGLISH;
     }
   }
 

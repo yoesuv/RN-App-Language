@@ -1,7 +1,7 @@
 ## App Language
 
 React Native app with multiple language localization.  
-Build from [Expo Framework](https://expo.dev/). Download apk file [here](https://e.pcloud.link/publink/show?code=XZyEfsZw6DUecj27hzoXKcAidT1UzAlKPy7)
+Build from [Expo Framework](https://expo.dev/). Download apk file [here](https://e.pcloud.link/publink/show?code=XZDenqZcONNjE5DlBYnP7MON9ue0pB0vGL7)
 
 #### Screenshot
 
